@@ -1,0 +1,23 @@
+#logo {
+    height:200px;
+    width:600px;
+    margin-left: 10px;
+}
+
+.jumbotron {
+
+    background-color: white;
+}
+
+h2 {
+    color: #395d97;
+}
+
+.panel-title, #submit{
+background-color: #395d97;
+color:white;
+}
+
+.panel-primary>.panel-heading {
+    background-color: #395d97;
+}
