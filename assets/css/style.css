@@ -13,7 +13,7 @@ h2 {
     color: #395d97;
 }
 
-.panel-title, #submit{
+.panel-title, #submit {
 background-color: #395d97;
 color:white;
 }
@@ -21,3 +21,29 @@ color:white;
 .panel-primary>.panel-heading {
     background-color: #395d97;
 }
+
+.btn {
+    margin-right: 10px;
+}
+
+.btn {
+    padding: 10px 15px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #395d97;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+  .delete:hover {background-color: #395d97;
+color:white;}
+  
+  .btn:active {
+    background-color: #395d97;
+    box-shadow: 0 5px rgb(102, 102, 102);
+    transform: translateY(4px);
+  }

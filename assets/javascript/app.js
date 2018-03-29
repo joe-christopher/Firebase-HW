@@ -15,7 +15,7 @@ $(document).ready(function() {
   
     firebase.initializeApp(config);
 
-    //Set db to local var
+    //Set db instance
 	var trainDatabase = firebase.database();
 
 
@@ -25,20 +25,21 @@ $(document).ready(function() {
 
 		event.preventDefault();
 
-		//Stores user's 
+		//set vars with input box values
 		var TrainName = $("#trainname").val().trim();
 		var Destination = $("#destination").val().trim();
 		var StartTime = $("#traintime").val().trim();
 		var Frequency = $("#trainrate").val().trim();
 
+        //create traindata object
 		var trainData = {
 			TrainName: TrainName, 
 			Destination: Destination,
 			FirstTrainTime: StartTime, 
 			Frequency: Frequency
 		};
-        console.log(TrainName);
-
+       
+        //if all input values are there, add to db
 		if(TrainName && destination && StartTime && Frequency){
 			//Pushing the user inputs to firebase
 		    trainDatabase.ref().push(trainData);
@@ -87,13 +88,15 @@ $(document).ready(function() {
 
 			//Uploading the results to the HTML page
 			$("#traintable > tbody").append("<tr><td>" + childtrainname + "</td><td>" + childdestination + "</td><td>" + ChildFrequency + "</td><td>" 
-			+ nextTrainconverted + "</td><td>" + MinutesTillTrain + "<button class='btn glyphicon glyphicon-trash delete' data-name='" + key + "' style='float: right'>" + "</button>" +  "</td></tr>");
+			+ nextTrainconverted + "</td><td>" + MinutesTillTrain + "<button class='btn remove' data-name='" + key + 
+			"' style='float: right'>" + "Remove</button>" +"<button class='btn update' data-name='" 
+			// + key + "' style='float: right'>" + "Update</button>" 
+			+  "</td></tr>");
 			
 		});
-	
 
-		// Click function to delete that current row of values in the table
-		$(document).on("click", ".delete", function() {
+		// Click function to remove that current row of values in the table
+		$(document).on("click", ".remove", function() {
 			
 			//Grabs the specific key and sets it to a variable
 			var key = $(this).attr("data-name");
@@ -103,11 +106,28 @@ $(document).ready(function() {
 			
 			location.reload();
 
-			if(navigator.userAgent.match(/Chrome|AppleWebKit/)){
-
-				window.location.href = "#traintable";
-
-            };
         });
+	
+	
+		// Click function to remove that current row of values in the table
+		// $(document).on("click", ".update", function() {
+			
+		// 	//Grabs the specific key and sets it to a variable
+		// 	var key = $(this).attr("data-name");
+			
+		// 	console.log($(this).attr("destination"));
+			
+
+			
+		// 	$("#destination").val() = $(this).val().Destination;
+		// 	$("#traintime").val() = $(this).FirstTrainTime;
+		// 	$("#trainrate").val() = $(this).Frequency;
+
+		// 	//Calls firebase and removes this specific child with this key
+		// 	// trainDatabase.ref().child(key).remove();
+			
+		// 	// location.reload();
+
+        // });
 
 });
